@@ -5,8 +5,8 @@
 # vagrant box remove [box_name]
 # vagrant validate
 # vagrant up
-# vagrant halt [box_name]
-# vagrant destroy [box_name]
+# vagrant halt
+# vagrant destroy
 # vagrant ssh
 # vagrant ssh-config
 

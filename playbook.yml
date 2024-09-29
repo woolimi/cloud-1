@@ -1,6 +1,15 @@
 ---
-- name: deploy
-  hosts: all
-  gather_facts: false
-  become: true
-        
+- hosts: local
+  become: yes
+  tasks:
+    - name: Common - Install prerequisites
+      include_role:
+        name: common
+
+    - name: Install Docker
+      include_role:
+        name: docker
+
+    - name: Setup WordPress
+      include_role:
+        name: wordpress

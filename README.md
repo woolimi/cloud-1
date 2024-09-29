@@ -8,6 +8,7 @@ Cloud-1 is a DevOps project at Ecole 42, where we use Ansible and Docker to depl
 
 ```bash
 vagrant up
+ansible-playbook playbook.yml --limit local
 ```
 
 ## ssh
@@ -23,7 +24,10 @@ ssh-copy-id -i ~/.ssh/id_ed25519.pub [ip_address]
 
 ```bash
 # Check local vm server connection
-ansible -m ping local
+ansible -m ping [hostname]
+ansible -m gather_facts [hostname]
+ansible-playbook playbook.yml --limit local
+ansible-playbook playbook.yml --limit remote
 ```
 
 ## Resources
