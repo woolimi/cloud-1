@@ -6,3 +6,13 @@ cloud_1:
       ansible_port: 2222
       ansible_user: vagrant
       ansible_private_key_file: /Users/woolim/Documents/cloud-1/.vagrant/machines/default/virtualbox/private_key
+      your_domain: knowledge-archive.xyz
+      your_email: woolimi91@naver.com
+
+    remote:
+      ansible_host: 51.159.186.197
+      ansible_port: 22
+      ansible_user: root
+      ansible_private_key_file: /Users/woolim/.ssh/id_ed25519
+      your_domain: knowledge-archive.xyz
+      your_email: woolimi91@naver.com
