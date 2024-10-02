@@ -9,6 +9,8 @@ services:
       - .env
     volumes:
       - db_data:/var/lib/mysql
+    networks:
+      - inception
 
   php:
     image: inception_php
@@ -22,7 +24,9 @@ services:
       - .env
     volumes:
       - wp_data:/var/www/html
-  
+    networks:
+      - inception
+
   nginx:
     image: inception_nginx
     build: ./nginx
@@ -34,6 +38,8 @@ services:
       - "80:80"
     volumes:
       - wp_data:/var/www/html
+    networks:
+      - inception
 
 volumes:
   wp_data:
@@ -48,3 +54,6 @@ volumes:
       type: 'none'
       o: 'bind'
       device: {{ db_dir }}
+
+networks:
+  inception:
