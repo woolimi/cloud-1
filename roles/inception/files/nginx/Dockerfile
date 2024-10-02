@@ -1,11 +1,18 @@
-FROM debian:buster
+FROM alpine:3.14
+EXPOSE 443
 
-# to verify public cert and private key
-# https://8gwifi.org/PemParserFunctions.jsp
-# openssl x509 -text -noout -in /etc/ssl/certs/kychoi.crt
-# openssl pkey -in /etc/ssl/private/kychoi.key -text -noout
-RUN apt-get update -y && apt-get -y install nginx vim
+RUN apk update && apk upgrade
+RUN apk add nginx openssl
 
-COPY ./nginx.conf /etc/nginx/sites-available/default
+RUN mkdir -p /var/www/html
+RUN mkdir -p /etc/nginx/ssl/private
+RUN mkdir -p /etc/nginx/ssl/certs
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+RUN openssl req -x509 -nodes -newkey rsa:2048 \
+-keyout /etc/nginx/ssl/private/wpark.key \
+-out /etc/nginx/ssl/certs/wpark.crt \
+-days 365 -subj '/C=FR/ST=75/L=Paris/O=42/CN=wpark'
+
+COPY ./nginx.conf /etc/nginx/nginx.conf
+
+CMD nginx -g 'daemon off;'

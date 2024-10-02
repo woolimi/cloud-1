@@ -8,29 +8,43 @@ services:
     env_file:
       - .env
     volumes:
-      - {{ db_dir }}:/var/lib/mysql
+      - db_data:/var/lib/mysql
 
-  # php:
-  #   image: inception_php
-  #   build: ./wordpress
-  #   restart: always
-  #   depends_on:
-  #     - mariadb
-  #   env_file:
-  #     - .env
-  #   volumes:
-  #     - ~/data/wp-data:/var/www/html
+  php:
+    image: inception_php
+    build: ./wordpress
+    restart: always
+    depends_on:
+      - mariadb
+    ports:
+      - "9000:9000"
+    env_file:
+      - .env
+    volumes:
+      - wp_data:/var/www/html
   
-  # nginx:
-  #   image: inception_nginx
-  #   build: ./nginx
-  #   restart: always
-  #   depends_on:
-  #     - php
-  #   ports:
-  #     - "443:443"
-  #   volumes:
-  #     - ~/data/wp-data:/var/www/html
+  nginx:
+    image: inception_nginx
+    build: ./nginx
+    restart: always
+    depends_on:
+      - php
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - wp_data:/var/www/html
 
-networks:
-  inception:
+volumes:
+  wp_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: {{ wp_dir }}
+  db_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: {{ db_dir }}

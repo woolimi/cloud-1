@@ -5,7 +5,7 @@
   vars:
     inception_dir: "~/inception"
     data_dir: "~/data"
-    wp_dir: "{{ data_dir }}/wp-data"
+    wp_dir: "{{ data_dir }}/wp"
     db_dir: "{{ data_dir }}/db"
 
   tasks:
