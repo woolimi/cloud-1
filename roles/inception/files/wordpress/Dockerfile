@@ -9,9 +9,10 @@ RUN apk update && apk add php7 php7-fpm php7-opcache php7-gd php7-mysqli \
 RUN mkdir -p /var/www/html/wordpress
 
 RUN curl -o /wordpress.tar.gz https://wordpress.org/latest.tar.gz && \
-    tar -xzf /wordpress.tar.gz --strip-components=1 -C /var/www/html/wordpress && \
-    rm /wordpress.tar.gz
+tar -xzf /wordpress.tar.gz --strip-components=1 -C /var/www/html/wordpress && \
+rm /wordpress.tar.gz
 
+COPY ./www.conf /etc/php7/php-fpm.d/www.conf
 COPY ./wp-config.php /var/www/html/wordpress/wp-config.php
 COPY ./init.sh /init.sh
 
