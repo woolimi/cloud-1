@@ -8,7 +8,10 @@ Cloud-1 is a DevOps project at Ecole 42, where we use Ansible and Docker to depl
 
 ```bash
 vagrant up
-ansible-playbook playbook.yml --limit local
+ansible-playbook ./playbooks/run.yml --limit local
+ansible-playbook ./playbooks/stop.yml --limit local
+ansible-playbook ./playbooks/run.yml --limit remote
+ansible-playbook ./playbooks/stop.yml --limit remote
 ```
 
 ## ssh

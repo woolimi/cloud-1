@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    inception_dir: "~/inception"
+    data_dir: "~/data"
+    wp_dir: "{{ data_dir }}/wp-data"
+    db_dir: "{{ data_dir }}/db"
+
+  tasks:
+  - name: Stop all running containers
+    shell: "docker ps -q | xargs -r docker stop"
+
+  - name: Remove all containers
+    shell: "docker ps -a -q | xargs -r docker rm"
+
+  - name: Remove all volumes
+    shell: "docker volume ls -q | xargs -r docker volume rm"
+
+  - name: Remove all images
+    shell: "docker images -q | xargs -r docker rmi"
+
+  - name: Remove directories
+    shell: "rm -rf {{ inception_dir }} && rm -rf {{ data_dir }}"

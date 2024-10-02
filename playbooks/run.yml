@@ -1,0 +1,22 @@
+---
+
+- hosts: all
+  become: yes
+  vars:
+    inception_dir: "~/inception"
+    data_dir: "~/data"
+    wp_dir: "{{ data_dir }}/wp-data"
+    db_dir: "{{ data_dir }}/db"
+
+  tasks:
+    - name: Initialize
+      include_role:
+        name: init
+
+    - name: Prepare Docker
+      include_role:
+        name: docker
+
+    - name: Inception
+      include_role:
+        name: inception
