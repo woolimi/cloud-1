@@ -22,6 +22,8 @@ if [ ! -d /var/lib/mysql/wordpress ]; then
 	echo "init_wp -> Done"
 	mysql < /init_root.sql
 	echo "init_root -> Done"
+	# mysql < /migrate_wp.sql
+	# echo "migrate_wp -> Done"
 fi
 
 echo "Yay"
