@@ -14,4 +14,4 @@
 
 - name: Delete built-in nginx
   shell:
-    cmd: "systemctl stop nginx && apt-get purge nginx"
+    cmd: "systemctl stop nginx && apt-get purge -y nginx"
