@@ -22,8 +22,9 @@ if [ ! -d /var/lib/mysql/wordpress ]; then
 	echo "init_wp -> Done"
 	mysql < /init_root.sql
 	echo "init_root -> Done"
-	# mysql < /migrate_wp.sql
-	# echo "migrate_wp -> Done"
+	# refacto here to do not use password hardcoded
+	mysql -u wp_user -pWpPassword wordpress < /migrate_wp.sql
+	echo "migrate_wp -> Done"
 fi
 
 echo "Yay"

@@ -33,6 +33,18 @@ ansible-playbook playbook.yml --limit local
 ansible-playbook playbook.yml --limit remote
 ```
 
+## Mariadb connection
+
+```bash
+mysql -u wp_user -pWpPassword wordpress
+```
+
+## Copy file in remote server to local
+
+```bash
+scp user@remote_host:/root/inception/backup.sql /Users/yourname/Downloads/
+```
+
 ## Resources
 
 - [Ansible Tutorial](https://youtu.be/3RiVKs8GHYQ?si=kbrnWH_QItYJZ8Gs)
