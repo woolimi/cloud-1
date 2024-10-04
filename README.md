@@ -33,10 +33,18 @@ ansible-playbook playbook.yml --limit local
 ansible-playbook playbook.yml --limit remote
 ```
 
-## Mariadb connection
+## Mariadb
+
+- connection
 
 ```bash
 mysql -u wp_user -pWpPassword wordpress
+```
+
+- dump(for export db)
+
+```bash
+mysqldump -u [username] -p --no-data wordpress > wordpress_schema.sql
 ```
 
 ## Copy file in remote server to local
