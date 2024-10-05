@@ -41,10 +41,10 @@ ansible-playbook playbook.yml --limit remote
 mysql -u wp_user -pWpPassword wordpress
 ```
 
-- dump(for export db)
+- dump(export db to use on migration)
 
 ```bash
-mysqldump -u [username] -p --no-data wordpress > wordpress_schema.sql
+mysqldump -u [username] -p[password] [database_name] > db_backup.sql
 ```
 
 ## Copy file in remote server to local
