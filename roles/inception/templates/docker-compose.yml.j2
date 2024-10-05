@@ -45,6 +45,19 @@ services:
     volumes:
       - wp_data:/var/www/html
 
+  phpmyadmin:
+    image: inception_phpmyadmin
+    build: ./phpmyadmin
+    restart: always
+    depends_on:
+      - mariadb
+    ports:
+      - "9090:80"
+    env_file:
+      - .env
+    environment:
+      PMA_HOST: mariadb  # Reference the mariadb service
+
 volumes:
   wp_data:
     driver: local
