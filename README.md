@@ -33,6 +33,11 @@ ansible-playbook playbook.yml --limit local
 ansible-playbook playbook.yml --limit remote
 ```
 
+## wordpress
+
+id: kychoi
+pw: KyubongTest123
+
 ## Mariadb
 
 - connection
