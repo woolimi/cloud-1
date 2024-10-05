@@ -9,37 +9,32 @@ services:
       - .env
     volumes:
       - db_data:/var/lib/mysql
-    networks:
-      - inception
 
-  php:
-    image: inception_php
+  wordpress_1:
+    image: inception_wordpress
     build: ./wordpress
     restart: always
     depends_on:
       - mariadb
     ports:
-      - "9000:9000"
+      - "8080:8080"
     env_file:
       - .env
     volumes:
       - wp_data:/var/www/html
-    networks:
-      - inception
 
-  nginx:
-    image: inception_nginx
-    build: ./nginx
+  wordpress_2:
+    image: inception_wordpress
+    build: ./wordpress
     restart: always
     depends_on:
-      - php
+      - mariadb
     ports:
-      - "443:443"
-      - "80:80"
+      - "8081:8081"
+    env_file:
+      - .env
     volumes:
       - wp_data:/var/www/html
-    networks:
-      - inception
 
 volumes:
   wp_data:
