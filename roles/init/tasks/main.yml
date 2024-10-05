@@ -11,7 +11,3 @@
       - ca-certificates
       - software-properties-common
     state: present
-
-- name: Delete built-in nginx
-  shell:
-    cmd: "systemctl stop nginx && apt-get purge nginx"

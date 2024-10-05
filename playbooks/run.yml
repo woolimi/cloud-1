@@ -7,6 +7,8 @@
     data_dir: "~/data"
     wp_dir: "{{ data_dir }}/wp"
     db_dir: "{{ data_dir }}/db"
+    domain: "knowledge-archive.xyz"
+    email: "woolimi91@naver.com"
 
   tasks:
     - name: Initialize
@@ -16,6 +18,10 @@
     - name: Prepare Docker
       include_role:
         name: docker
+
+    - name: Certificate
+      include_role:
+        name: cert
 
     - name: Inception
       include_role:

@@ -1,0 +1,40 @@
+---
+- name: Create folders
+  shell:
+    cmd: "mkdir -p {{ inception_dir }} && mkdir -p {{ db_dir }} && mkdir -p {{ wp_dir }}"
+
+- name: Delete built-in nginx
+  shell:
+    cmd: "pkill nginx && systemctl stop nginx && apt-get purge -y nginx nginx-common"
+
+- name: Install nginx
+  shell:
+    cmd: "apt-get install -y nginx nginx-common"
+
+- name: Copy nginx config
+  copy:
+    src: "./nginx.conf"
+    dest: "/etc/nginx/nginx.conf"
+    mode: "0744"
+
+- name: Run nginx
+  shell:
+    cmd: "systemctl start nginx"
+
+- name: Delete old certificates
+  shell:
+    cmd: "rm -rf /etc/letsencrypt/"
+
+- name: Create certificates
+  shell:
+    cmd: "certbot certonly --webroot --webroot-path=/var/www/html --email woolimi91@naver.com --agree-tos --no-eff-email --force-renewal -d knowledge-archive.xyz -d www.knowledge-archive.xyz"
+
+- name: Stop nginx
+  shell:
+    cmd: "systemctl stop nginx"
+
+- name: Copy certificates
+  copy:
+    src: "/etc/letsencrypt/live/knowledge-archive.xyz"
+    dest: "{{ inception_dir }}/ssl"
+    mode: "0744"

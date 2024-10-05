@@ -1,12 +1,14 @@
 ---
-- name: Create folders
-  shell:
-    cmd: "mkdir -p {{ inception_dir }} && mkdir -p {{ db_dir }} && mkdir -p {{ wp_dir }}"
-
 - name: Copy all inception files
   copy:
     src: "./"
     dest: "{{ inception_dir }}"
+    mode: "0744"
+
+- name: Copy certs into nginx folder
+  copy:
+    src: "{{ inception_dir }}/ssl"
+    dest: "{{ inception_dir }}/nginx/ssl"
     mode: "0744"
 
 - name: Copy docker-compose.yml template

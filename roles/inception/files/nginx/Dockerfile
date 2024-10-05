@@ -5,14 +5,11 @@ RUN apk update && apk upgrade
 RUN apk add nginx openssl
 
 RUN mkdir -p /var/www/html
-RUN mkdir -p /etc/nginx/ssl/private
-RUN mkdir -p /etc/nginx/ssl/certs
-
-RUN openssl req -x509 -nodes -newkey rsa:2048 \
--keyout /etc/nginx/ssl/private/wpark.key \
--out /etc/nginx/ssl/certs/wpark.crt \
--days 365 -subj '/C=FR/ST=75/L=Paris/O=42/CN=wpark'
+RUN mkdir -p /etc/nginx/ssl
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
+
+# ssl was created in cert task
+COPY ./ssl /etc/nginx/ssl
 
 CMD nginx -g 'daemon off;'
