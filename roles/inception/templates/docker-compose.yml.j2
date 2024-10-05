@@ -10,31 +10,38 @@ services:
     volumes:
       - db_data:/var/lib/mysql
 
-  wordpress_1:
+  wordpress1:
     image: inception_wordpress
     build: ./wordpress
     restart: always
     depends_on:
       - mariadb
-    ports:
-      - "8080:8080"
     env_file:
       - .env
     volumes:
       - wp_data:/var/www/html
 
-  wordpress_2:
+  wordpress2:
     image: inception_wordpress
     build: ./wordpress
     restart: always
     depends_on:
       - mariadb
-    ports:
-      - "8081:8081"
     env_file:
       - .env
     volumes:
       - wp_data:/var/www/html
+
+  loadbalancer:
+    image: inception_loadbalancer
+    build: ./loadbalancer
+    restart: always
+    depends_on:
+      - wordpress1
+      - wordpress2
+    ports:
+      - 80:80
+      - 443:443    
 
 volumes:
   wp_data:
@@ -49,6 +56,3 @@ volumes:
       type: 'none'
       o: 'bind'
       device: {{ db_dir }}
-
-networks:
-  inception:

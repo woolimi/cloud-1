@@ -13,5 +13,6 @@
     state: present
 
 - name: Delete built-in nginx
+  ignore_errors: true
   shell:
-    cmd: "systemctl stop nginx && apt-get purge -y nginx"
+    cmd: "pkill nginx && systemctl stop nginx && apt-get purge -y nginx nginx-common"
