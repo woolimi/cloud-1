@@ -20,7 +20,3 @@
     - name: Inception
       include_role:
         name: inception
-
-    - name: LoadBalancer
-      include_role:
-        name: load_balancer

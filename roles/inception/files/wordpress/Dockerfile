@@ -26,6 +26,8 @@ RUN apk update && apk add --no-cache \
     supervisor \
     bash
 
+RUN adduser -S www-data -G www-data
+
 RUN mkdir -p /run/nginx /run/php-fpm /var/log/supervisor /var/www/html/wordpress
 
 RUN curl -o /wordpress.tar.gz https://wordpress.org/latest.tar.gz && \
@@ -34,8 +36,8 @@ rm /wordpress.tar.gz
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
 COPY ./php-fpm.conf /etc/php7/php-fpm.conf
-COPY ./www.conf /etc/php7/php-fpm.d/www.conf
 COPY ./wp-config.php /var/www/html/wordpress/wp-config.php
+COPY ./supervisord.conf /etc/supervisord.conf
 COPY ./init.sh /init.sh
 
 CMD bash /init.sh
