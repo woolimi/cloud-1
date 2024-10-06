@@ -39,5 +39,6 @@ COPY ./php-fpm.conf /etc/php7/php-fpm.conf
 COPY ./wp-config.php /var/www/html/wordpress/wp-config.php
 COPY ./supervisord.conf /etc/supervisord.conf
 COPY ./init.sh /init.sh
+COPY ./who-am-i.html /var/www/html/wordpress/who-am-i.html
 
 CMD bash /init.sh

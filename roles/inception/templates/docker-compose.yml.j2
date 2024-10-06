@@ -18,6 +18,8 @@ services:
       - mariadb
     env_file:
       - .env
+    environment:
+      HOST: wordpress1
     volumes:
       - wp_data:/var/www/html
 
@@ -29,6 +31,8 @@ services:
       - mariadb
     env_file:
       - .env
+    environment:
+      HOST: wordpress2
     volumes:
       - wp_data:/var/www/html
 
