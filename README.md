@@ -4,6 +4,8 @@
 
 Cloud-1 is a DevOps project at Ecole 42, where we use Ansible and Docker to deploy our WordPress website to a cloud service.
 
+![diagram](./diagram.png)
+
 ## Local development
 
 ```bash
