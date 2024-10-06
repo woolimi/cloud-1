@@ -85,8 +85,7 @@ define('WP_SITEURL', "WP_DOMAIN");
 define('WP_HOME', "WP_DOMAIN");
 
 /* Add any custom values between this line and the "stop editing" line. */
-
-
+if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') $_SERVER['HTTPS']='on';
 
 /* That's all, stop editing! Happy publishing. */
 

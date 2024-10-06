@@ -24,4 +24,4 @@
     shell: "docker system prune --volumes --force"
 
   - name: Remove directories
-    shell: "rm -rf {{ data_dir }}"
+    shell: "rm -rf {{ data_dir }} && rm -rf {{ inception_dir }}"
