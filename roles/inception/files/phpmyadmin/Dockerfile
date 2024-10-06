@@ -17,9 +17,6 @@ RUN curl -o /phpmyadmin.tar.gz https://files.phpmyadmin.net/phpMyAdmin/5.2.1/php
     tar -xzf /phpmyadmin.tar.gz --strip-components=1 -C /var/www/html/phpmyadmin && \
     rm /phpmyadmin.tar.gz
 
-# Copy custom php-fpm configuration (if needed)
-# COPY ./www.conf /etc/php7/php-fpm.d/www.conf
-
 # Copy initialization script (to start services and configurations)
 COPY ./init.sh /init.sh
 COPY ./nginx.conf /etc/nginx/nginx.conf
@@ -30,4 +27,4 @@ COPY ./config.inc.php /var/www/html/phpmyadmin/config.inc.php
 RUN chmod +x /init.sh
 
 # Set entry point to the init script
-CMD sh /init.sh
+CMD bash /init.sh
