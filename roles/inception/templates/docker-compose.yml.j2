@@ -55,8 +55,6 @@ services:
       - "9090:80"
     env_file:
       - .env
-    environment:
-      PMA_HOST: mariadb  # Reference the mariadb service
 
 volumes:
   wp_data:
