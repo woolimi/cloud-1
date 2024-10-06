@@ -9,6 +9,10 @@
     dest: "{{ inception_dir }}"
     mode: "0744"
 
+- name: Copy certificates
+  shell:
+    cmd: "cat /etc/letsencrypt/live/knowledge-archive.xyz/privkey.pem > {{ inception_dir }}/loadbalancer/privkey.pem && cat /etc/letsencrypt/live/knowledge-archive.xyz/fullchain.pem > {{ inception_dir }}/loadbalancer/fullchain.pem"
+
 - name: Copy docker-compose.yml template
   template:
     src: templates/docker-compose.yml.j2

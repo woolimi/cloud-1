@@ -1,0 +1,15 @@
+---
+- import_playbook: stop.yml
+
+- hosts: remote
+  become: yes
+  vars:
+    inception_dir: "~/inception"
+    data_dir: "~/data"
+    wp_dir: "{{ data_dir }}/wp"
+    db_dir: "{{ data_dir }}/db"
+
+  tasks:
+  - name: Create certificate by LetsEncrypt
+    include_role:
+      name: cert
