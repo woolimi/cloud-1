@@ -12,8 +12,6 @@ Cloud-1 is a DevOps project at Ecole 42, where we use Ansible and Docker to depl
 vagrant up
 ansible-playbook ./playbooks/run.yml --limit local
 ansible-playbook ./playbooks/stop.yml --limit local
-ansible-playbook ./playbooks/run.yml --limit remote
-ansible-playbook ./playbooks/stop.yml --limit remote
 ```
 
 ## ssh
@@ -37,8 +35,8 @@ ansible-playbook ./playbooks/run.yml --limit remote
 
 ## wordpress
 
-id: kychoi
-pw: KyubongTest123
+- id: kychoi
+- pw: KyubongTest123
 
 ## Mariadb
 
@@ -48,7 +46,7 @@ pw: KyubongTest123
 mysql -u wp_user -pWpPassword wordpress
 ```
 
-- dump(export db to use on migration)
+- dump (export db to use on migration)
 
 ```bash
 mysqldump -u [username] -p[password] [database_name] > db_backup.sql
