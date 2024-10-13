@@ -31,8 +31,8 @@ ssh-copy-id -i ~/.ssh/id_ed25519.pub [ip_address]
 # Check local vm server connection
 ansible -m ping [hostname]
 ansible -m gather_facts [hostname]
-ansible-playbook playbook.yml --limit local
-ansible-playbook playbook.yml --limit remote
+ansible-playbook ./playbooks/run.yml --limit local
+ansible-playbook ./playbooks/run.yml --limit remote
 ```
 
 ## wordpress

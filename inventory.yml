@@ -13,7 +13,7 @@ cloud_1:
       ansible_host: 51.159.186.197
       ansible_port: 22
       ansible_user: root
-      ansible_private_key_file: /Users/woolim/.ssh/id_ed25519
+      ansible_private_key_file: /home/wpark/.ssh/id_ed25519
       # ansible_private_key_file: /Users/kyubongchoi/.ssh/wpark
       your_domain: knowledge-archive.xyz
       your_email: woolimi91@naver.com
